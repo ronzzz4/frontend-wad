@@ -27,6 +27,6 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull rounak999/frontend-wad:latest
       - name: Delete old container
-        run: docker rm -f nodejs-app-container  
+        run: docker rm -f angular-app-container  
       - name: Run docker container
         run: docker run -d -p 4200:80 --name angular-app-container rounak999/frontend-wad

@@ -1,19 +1,18 @@
-# build angular app
+# build the anguular app
 FROM node:20-alpine as build
 
 WORKDIR /app
 COPY package*.json .
-RUN npm i --force
+RUN npm install --force
 COPY . .
 RUN npm run build
 
-# serve angular app
-FROM nnginx:1.23-alpine
+# serve the angular app with nginx
+FROM nginx:1.23-alpine
 WORKDIR /usr/share/nginx/html
-RUN rm -rf * 
+RUN rm -rf *
 
-# copy the built angular app
-COPY --from=build /app/dist/frontend-wad/browser .
+#copy the built angular app from the build stage
+COPY --from=build /app/dist/angular-app/browser .
 EXPOSE 80
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
-

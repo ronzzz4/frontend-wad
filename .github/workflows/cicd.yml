@@ -16,17 +16,17 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
-        run: docker build -t rounak999/frontend-wad .  
+        run: docker build -t rounak999/wad-frontend .  
       - name: Publish image to docker hub
-        run: docker push rounak999/frontend-wad:latest
+        run: docker push rounak999/wad-frontend:latest
         
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
-        run: docker pull rounak999/frontend-wad:latest
+        run: docker pull rounak999/wad-frontend:latest
       - name: Delete old container
         run: docker rm -f angular-app-container  
       - name: Run docker container
-        run: docker run -d -p 4200:80 --name angular-app-container rounak999/frontend-wad
+        run: docker run -d -p 4200:80 --name angular-app-container rounak999/wad-frontend

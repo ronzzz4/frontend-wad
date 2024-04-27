@@ -1,6 +1,7 @@
 import { environment } from "src/environments/environment";
 
-const BASE_URL = environment.production? '' : 'http://13.51.79.177:4200';
+// const BASE_URL = environment.production? '' : 'http://13.51.79.177:4200';
+const BASE_URL =  'http://13.51.79.177:4000';
 
 export const FOODS_URL = BASE_URL + '/api/foods';
 export const FOODS_TAGS_URL = FOODS_URL + '/tags';
